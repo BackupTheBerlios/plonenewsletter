@@ -1,6 +1,6 @@
 PloneNewsletter ToDo list
 ------------------------------------------------------------
-$Id: TODO,v 1.1 2002/11/05 11:26:40 terraces Exp $
+$Id: TODO,v 1.2 2002/12/20 16:44:56 abienvenu Exp $
 ------------------------------------------------------------
 This file is a component of PloneNewsletter product
 Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
@@ -22,7 +22,7 @@ See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
 
 * Find a way to empty spool (if subscriber does not answer within a week)
 
-* Welcome message (?)
+* Welcome message -> List Folder Contents permission needed for Anonymous
 
 * getMemberId() returns Null objec if user not definied in Plone 
   acl_users
