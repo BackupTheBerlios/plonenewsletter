@@ -8,7 +8,7 @@
 """
 A Publication is a Newsletter release. 
 
-$Id: Publication.py,v 1.4 2003/08/01 15:20:11 terraces Exp $
+$Id: Publication.py,v 1.5 2003/10/13 15:23:50 abienvenu Exp $
 """
 
 ## Python imports
@@ -225,8 +225,15 @@ class Publication(PortalFolder, PortalContent, DefaultDublinCoreImpl,):
         txtbody = string.replace(txtbody[5:-7], '&quot;', '"')
         txtbody = string.replace(txtbody, '&nbsp;', ' ')
         txtbody = string.replace(txtbody, '&amp;', '&')
+        txtbody = string.replace(txtbody, '&agrave;', 'à')
+        txtbody = string.replace(txtbody, '&acirc;', 'â')
         txtbody = string.replace(txtbody, '&eacute;', 'é')
         txtbody = string.replace(txtbody, '&egrave;', 'è')
+        txtbody = string.replace(txtbody, '&ecirc;', 'ê')
+        txtbody = string.replace(txtbody, '&icirc;', 'î')
+        txtbody = string.replace(txtbody, '&ocirc;', 'ô')
+        txtbody = string.replace(txtbody, '&ucirc;', 'û')
+        txtbody = string.replace(txtbody, '&ugrave;', 'ù')
         txtbody = string.replace(txtbody, '&#8217;', "'")
         txtbody = string.replace(txtbody, '&#8216;', "'")
         txtbody = string.replace(txtbody, '&#339;', 'oe')
@@ -234,6 +241,7 @@ class Publication(PortalFolder, PortalContent, DefaultDublinCoreImpl,):
         txtbody = string.replace(txtbody, '&#8211;', '-')
         txtbody = string.replace(txtbody, '&#8222;', '"')
         txtbody = string.replace(txtbody, '&#8364;', 'EUR')
+        txtbody = string.replace(txtbody, '’', '\'')
         return [htmlbody, txtbody]
         
     security.declareProtected(AddPortalFolders, 'addPublication')
