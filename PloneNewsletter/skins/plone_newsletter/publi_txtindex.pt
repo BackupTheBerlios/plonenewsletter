@@ -1,0 +1,24 @@
+<tal:block metal:define-macro="main" tal:define="items python:sequence.sort(here.listFolderContents(contentFilter={'Type':('Article',)}), (('position',),) )">
+
+<tal:block tal:replace="structure string:*** ${here/title_or_id} ***">Title or id</tal:block>
+<tal:block tal:repeat="topic python:here.topics">
+<tal:block tal:condition="python:here.hastopic(topic)">
+ <tal:block tal:replace="python:'@@ %s\n' %topic">Topic</tal:block>
+ <tal:block tal:repeat="item python:filter(lambda x: x.topic==topic,items)">
+ <tal:block tal:replace="structure python:'>> %s' %item.title">Titles</tal:block>
+ <tal:block tal:replace="item/description" tal:condition="python:item.description!=''">Description</tal:block></tal:block>
+</tal:block>
+</tal:block>
+@@@@@@@@@@
+<tal:block tal:repeat="topic python:here.topics">
+<tal:block tal:condition="python:here.hastopic(topic)">
+ <tal:block tal:replace="python:'@@ %s\n' %topic">Topic</tal:block>
+ <tal:block tal:repeat="item python:filter(lambda x: x.topic==topic, items)">
+ <tal:block tal:replace="structure python:'\n-- %s --\n\n%s\n\n' % (item.title, here.striptext(item.text))"
+ 	 tal:condition="python:item.topic==topic"
+ 	> Titles and content </tal:block>
+ </tal:block>
+</tal:block>
+</tal:block>
+<tal:block tal:replace="structure python:'@@@@@@@@@@\n%s\n@@@@@@@@@@' %here.disclaimer">Disclaimer</tal:block>
+</tal:block>

@@ -1,0 +1,54 @@
+PloneNewsletter installation instructions
+------------------------------------------------------------
+$Id: INSTALL,v 1.1 2002/11/05 11:26:41 terraces Exp $
+------------------------------------------------------------
+This file is a component of PloneNewsletter product
+Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
+Maintained by Alexandre Passant <apa@makinacorpus.org>
+and Arnaud Bienvenu <abi@makinacorpus.org>
+Released under GPL version 2. or later 
+See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
+------------------------------------------------------------
+
+1/ Requirements:
+
+- Zope: http://www.zope.org/Products (tested with 2.5.1 and 2.6.0)
+- CMF: http://cmf.zope.org/download (tested with 1.3)
+- Plone: http://plone.org/download (texted with 1.0beta2)
+
+2/ Installation
+
+- Unpack PloneNewsletter products into your Products directory (or link it to this directory)
+- Start Zope
+
+3/ Using the module
+- Create a Plone Site
+- In this site, create an external method with the following parameters
+
+4/ Module configuration
+- Create a Plone Site instance
+- Add an external method with the following parameters
+    - Id            :   newsletter_install
+    - Title         :   (optionnal)
+    - Module Name   :   PloneNewsletter.NewsletterInstall
+    - Function Name :   install
+- Launch it
+- You can now add newsletter in your plone site. Fill all necessary fields when editing newsletter properties
+- Configure your mailhost in Plone Site root
+- Then, add the following lines in your /etc/aliases according your from field (here from e-mail is newsletter@domain.com):
+    newsletter: alias_to_redirect
+    newsletter-error: alias_to_redirect
+    newsletter-subscribe: "| python /path_to_newsletter_product/NLparser.py http://path_to_site/newsletter_id"
+    newsletter-unsubscribe: "|  python /path_to_newsletter_product/NLparser.py http://path_to_site/newsletter_id"
+
+- If you wish admins to get a mail when newsletter is ready for reviewing, add users in Plone Site acl_users
+
+5/ Help, customisation, bugs ...
+- Read README to learn how to custom newsletter template
+- Check project homepage on http://makina-corpus.org to get latest releases and informations
+- For any bugs, you can contact us at (apa@makinacorpus.org && abi@makinacorpus.org)
+
+
+Have Fun !
+
+

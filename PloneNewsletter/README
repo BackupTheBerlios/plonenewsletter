@@ -1,0 +1,50 @@
+Readme file for PloneNewsletter product
+-----------------------------------------------------------
+$Id: README,v 1.1 2002/11/05 11:26:41 terraces Exp $
+------------------------------------------------------------
+This file is a component of PloneNewsletter product
+Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
+Maintained by Alexandre Passant <apa@makinacorpus.org>
+and Arnaud Bienvenu <abi@makinacorpus.org>
+Released under GPL version 2. or later 
+See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
+------------------------------------------------------------
+
+If you want to set a special skin for the emailed html version of your
+newsletter, you must set this property (through the ZMI) on your newsletter
+folder : 
+ Name : mailskin
+ Type : string
+ Value : name_of_your_skin
+
+To customize the subscription message, set this property :
+ Name : subscription_message
+ Type : text
+ Value : The text that requests the user to confirm its subscription
+replying to this message
+
+To customize the confirmation message, set this property :
+ Name : confirmation_message
+ Type : text
+ Value : The text that welcomes the user
+
+To customize the unsubscription message, set this property :
+ Name : unsubscription_message
+ Type : text
+ Value : The text that requests the user to confirm its unsubscription
+replying to this message
+
+To customize the removal confirmation message, set this property :
+ Name : rconfirmation_message
+ Type : text
+ Value : The text that says good bye to the user
+
+
+If you want a special release (i.e. the latest one) to be delivered to new
+subscribers, set this property :
+ Name : welcome_release
+ Type : text
+ Value : Name of the Publication containing the release
+IMPORTANT : If you set welcome_release, you must allow "Anonymous" to "List
+Folder Contents" on your newsletter folder
+

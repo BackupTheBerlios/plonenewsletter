@@ -1,0 +1,32 @@
+PloneNewsletter ToDo list
+------------------------------------------------------------
+$Id: TODO,v 1.1 2002/11/05 11:26:40 terraces Exp $
+------------------------------------------------------------
+This file is a component of PloneNewsletter product
+Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
+Maintained by Alexandre Passant <apa@makinacorpus.org>
+and Arnaud Bienvenu <abi@makinacorpus.org>
+Released under GPL version 2. or later 
+See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
+------------------------------------------------------------
+
+* Add a python script to wrap error messages and manage errors 
+  (tab to see which mails got mail-error, with ability to remove
+  users from the newsletter subscribers)
+
+* Thread problems if server downs while sending mails: 
+  ability to restart where it stopped
+  => have a look at PersistentThreads product
+
+* Debug real-time status of thread (problem when all e-mails have been sent)
+
+* Find a way to empty spool (if subscriber does not answer within a week)
+
+* Welcome message (?)
+
+* getMemberId() returns Null objec if user not definied in Plone 
+  acl_users
+
+* automate publication of index.hmtl and index.txt when publishing newsletter
+
+

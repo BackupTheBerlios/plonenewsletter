@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master">
+		
+<body>
+
+<div metal:fill-slot="super" tal:condition="python:len(here.portal_actions.listFilteredActionsFor(here)['folder']) > 1">
+    
+</div>
+
+<div metal:fill-slot="main" tal:define="errors python:request.get('errors', {})">
+
+    <div class="contentHeader">
+    <h1 tal:content="here/title_or_id">Title or id</h1>
+    </div>
+
+    <p tal:condition="python:here.title==''">
+        This newsletter has yet to be configured, click the edit button to manage it.
+    </p>
+
+    <div tal:condition="python:here.title!=''">
+    
+        <span class="description" tal:content="structure here/description">
+            Description
+        </span>
+
+        <form metal:use-macro="here/newsletter_forms/macros/subscribe">
+        </form>
+
+        <form metal:use-macro="here/newsletter_forms/macros/unsubscribe">
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
+

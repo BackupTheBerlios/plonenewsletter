@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master">
+
+<body>
+
+<table><tr><td metal:fill-slot="leftpane"></td></tr></table>
+
+<table metal:fill-slot="main" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td>
+      <div tal:condition="python:not hasattr(here, 'nbusers')">This Publication has not
+been published yet.</div>
+      <div tal:condition="here/nbusers|nothing">Progress: <span
+tal:replace="python:len(here.sent)*100/here.nbusers">12</span>%</div>
+      <div tal:condition="here/nbusers|nothing">
+        <span tal:replace="python:len(here.sent)">24</span> adresses sent:
+        <ul>
+          <li tal:repeat="user here/sent"
+	      tal:content="user/email">email</li>
+	</ul>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

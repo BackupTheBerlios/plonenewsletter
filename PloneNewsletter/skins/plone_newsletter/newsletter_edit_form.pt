@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" 
+	lang="en-US"
+    metal:use-macro="here/main_template/macros/master"
+	i18n:domain="plonenewsletter">
+
+<body>
+
+	<div metal:fill-slot="super1" 
+		tal:condition="python:len(here.portal_actions.listFilteredActionsFor(here)['folder']) > 1">
+	</div>
+
+
+<div metal:fill-slot="main" tal:define="errors python:request.get('errors', {})">
+
+    <h1 i18n:translate="heading_edit_newsletter">Edit Newsletter</h1>
+
+    <p i18n:translate="description_edit_newsletter">
+    A newsletter allows you to send informative bulletins to subscribed users.
+    The newsletter is created from a bunch of articles.
+    All sended mails are stored as archives.
+    </p>
+
+    <form class="group"
+          name="newsletter_edit_form" 
+          action="newsletter_edit" 
+          method="post"
+          tal:attributes="action request/URL">
+
+        <span class="legend" i18n:translate="legend_newsletter_details">Newsletter Details</span>
+
+        <div class="row" 
+             tal:define="error_id errors/id | nothing;
+						 id request/id | here/id">
+            
+            <div class="label required">
+				<span i18n:translate="label_name">Name</span>
+
+				<div id="id_help"
+					i18n:translate="help_id"
+					class="help"
+					style="visibility:hidden">
+				Enter the Short Name of the newsletter. This is the part that will show up as part
+                of the web address. This should be short, descriptive
+                and preferrably not contain spaces, underscores or mixed case. Example:
+                "bulletin-october-2002"
+				</div>
+
+			</div>
+
+            <div class="field"
+                  tal:attributes="class python:test(error_id, 'field error', 'field')" >
+                <div tal:condition="error_id"
+                      tal:replace="error_id" />
+
+                <input type="text" 
+                       name="id" 
+                       size="25" 
+                       value="#"
+                       tal:attributes="value id;" 
+                       onfocus="formtooltip('id_help',1)"	
+                       onblur="formtooltip('id_help',0)" />
+            </div>
+        </div>
+
+        <div class="row" 
+             tal:define="error_title errors/title | nothing;
+                         Title request/title | here/Title;
+						 id here/getId;">
+
+            <div class="label required">
+				<span i18n:translate="label_title">Title</span>
+
+				<div id="title_help"
+					i18n:translate="help_title"
+					class="help"
+					style="visibility:hidden">
+				Enter the title of the newsletter.
+				</div>
+
+			</div>
+
+            <div class="field"
+                  tal:attributes="class python:test(error_title, 'field error', 'field')" >
+                <div tal:condition="error_title"
+                      tal:replace="error_title" />
+
+                <input type="text" 
+                       name="field_title" 
+                       size="25" 
+                       value="#"
+                       tal:attributes="value Title;" 
+                       onfocus="formtooltip('title_help',1)"	
+                       onblur="formtooltip('title_help',0)" />
+            </div>
+        </div>
+ 
+        <div class="row">
+            <div class="label">
+				<span i18n:translate="label_description">Description</span>
+
+				<div id="description_help"
+					i18n:translate="help_description"
+					class="help"
+					style="visibility:hidden">
+	            Short description of the newsletter. 
+				</div>
+			</div>
+			<div class="field" tal:define="Description request/description | here/description">
+                <textarea name="description:text"
+                          rows="10"
+                          cols="25"
+                          tal:content="Description"
+                          onfocus="formtooltip('description_help',1)"
+                          onblur="formtooltip('description_help',0)"
+                          >
+                Description
+                </textarea>
+			</div>
+		</div>
+
+        <div class="row" 
+             tal:define="error_topics errors/topics | nothing;
+                         Topics request/topics | here/topics;">
+            <div class="label required">
+				<span i18n:translate="label_topics">Topics</span>
+
+				<div id="topics_help"
+					i18n:translate="help_topics"
+					class="help"
+					style="visibility:hidden">
+				Newsletter topics. Each article of any newsletter shold belongs to one of these topic. Put one topic per line, in the order you want them to be displayed in the newsletter.
+				</div>
+
+			</div>
+
+            <div class="field"
+                  tal:attributes="class python:test(error_topics, 'field error', 'field')" >
+                <div tal:condition="error_topics"
+                      tal:replace="error_topics" />
+
+
+                <textarea name="topics:text"
+                          rows="10"
+                          cols="25"
+                          tal:content="python:'\n'.join(Topics)"
+                          onfocus="formtooltip('topics_help',1)"
+                          onblur="formtooltip('topics_help',0)"
+                        >
+                Topics
+                </textarea>
+            </div>
+        </div>
+
+
+        <div class="row"
+             tal:define="error_mfrom errors/mailFrom | nothing;
+                         From request/field_mailFrom | here/mailer/mailFrom">
+			<div class="label required">
+				<span i18n:translate="label_mailfrom">From e-mail</span>
+
+				<div id="mailfrom_help"
+					i18n:translate="help_mailfrom"
+					class="help"
+					style="visibility:hidden">
+				 The e-mail which is used to send the newsletter.	
+				</div>
+			</div>
+			<div class="field"
+                  tal:attributes="class python:test(error_mfrom, 'field error', 'field')" >
+                <div tal:condition="error_mfrom"
+                      tal:replace="error_mfrom" />
+
+                <input type="text" 
+                       name="field_mailFrom" 
+                       size="25" 
+                       value="#"
+                       tal:attributes="value From"
+                       onfocus="formtooltip('mailfrom_help',1)"
+                       onblur="formtooltip('mailfrom_help',0)"
+                        />
+            </div>
+		</div>
+
+        <div class="row" 
+             tal:define="error_nfrom errors/nameFrom | nothing;
+                         NFrom request/nameFrom | here/mailer/nameFrom">
+            <div class="label required">
+				<span i18n:translate="label_namefrom">From name</span>
+            
+				<div id="namefrom_help"
+					i18n:translate="help_namefrom"
+					class="help"
+					style="visibility:hidden">
+	            The name that will appear in newsletter 'from' field.
+				</div>
+			</div>
+
+			<div class="field"
+                    tal:attributes="class python:test(error_nfrom, 'field error', 'field')" >
+
+                <div tal:condition="error_nfrom"
+                      tal:replace="error_nfrom" />
+                   
+                <input type="text" 
+                       name="field_nameFrom"
+                       size="25" 
+                       value="#"
+                       tal:attributes="value NFrom"
+                       onfocus="formtooltip('namefrom_help',1)"
+                       onblur="formtooltip('namefrom_help',0)"
+                />
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="label">
+				<span i18n:translate="label_signature">Message signature</span>
+
+				<div id="signature_help"
+					i18n:translate="help_signature"
+					class="help"
+					style="visibility:hidden">
+            	Signature that will be added to your messages.
+				</div>	
+			</div>
+
+			<div class=field tal:define="Sign request/signature | here/mailer/signature">
+                <textarea name="signature:text"
+                          rows="4"
+                          cols="25"
+                          tal:content="Sign"
+                          onfocus="formtooltip('signature_help',1)"
+                          onblur="formtooltip('signature_help',0)"
+                        >
+                Signature
+                </textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+				<span i18n:translate="label_disclaimer">Message disclaimer</span>
+
+				<div id="disclaimer_help"
+					i18n:translate="help_disclaimer"
+					class="help"
+					style="visibility:hidden">
+            	Disclaimer that will be added to your messages.
+				</div>	
+			</div>
+
+			<div class=field tal:define="Disc request/disclaimer | here/disclaimer">
+                <textarea name="disclaimer:text"
+                          rows="4"
+                          cols="25"
+                          tal:content="Disc"
+                          onfocus="formtooltip('disclaimer_help',1)"
+                          onblur="formtooltip('disclaimer_help',0)"
+                        >
+                Disclaimer
+                </textarea>
+            </div>
+        </div>
+
+
+     
+        <div class="row">
+            <div class="label">&nbsp;</div>
+            <div class="field">
+                <input class="context"
+                        type="submit" 
+                        name="submit" 
+                        value="Save" 
+                        i18n:attributes="value"
+                        />
+            </div>
+        </div>       
+
+        <input type="hidden" name="form_submitted" value="1" tal:attributes="value template/id" >
+         
+    </form>
+
+</div>
+
+</body>
+</html>
