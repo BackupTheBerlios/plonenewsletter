@@ -8,7 +8,7 @@
 """
 Install script to setup Newsletter, Publication and Article in a Plone Site instance 
 
-$Id: NewsletterInstall.py,v 1.1 2002/11/05 11:26:41 terraces Exp $
+$Id: NewsletterInstall.py,v 1.2 2002/11/08 12:00:10 terraces Exp $
 """
 
 from Products.CMFCore.TypesTool import ContentFactoryMetadata
@@ -95,10 +95,8 @@ def install(self):
     ## send newsletter
     scripts.manage_addProduct['PythonScripts'].manage_addPythonScript('send')
     send = getattr(scripts, 'send')
-    _send = """context.REQUEST.PARENTS[0].send(context)
-#context.portal_workflow.doActionFor(context.htmlbody,'publish')
-#context.portal_workflow.doActionFor(context.txtbody,'publish')
-"""
+    _send = """context.REQUEST.PARENTS[0].send(context)"""
+    
     send.ZPythonScript_edit('attr', _send)
     ## submit newsletter for validation
     scripts.manage_addProduct['PythonScripts'].manage_addPythonScript('valid')
