@@ -8,7 +8,7 @@
 """
 Install script to setup Newsletter, Publication and Article in a Plone Site instance 
 
-$Id: NewsletterInstall.py,v 1.2 2002/11/08 12:00:10 terraces Exp $
+$Id: NewsletterInstall.py,v 1.3 2003/08/01 15:20:11 terraces Exp $
 """
 
 from Products.CMFCore.TypesTool import ContentFactoryMetadata
@@ -64,11 +64,15 @@ def install(self):
                 out.write('Added "%s" to "%s" skin\n' %(skindir, skin))
             else:
               out.write('Skipping "%s" skin, "%s" is already set up\n' %(skin, skindir))
-  
+ 
     ## Adds portal tabs in Publication and Newsletter view
+    newftabs = ('Newsletter', 'Publication')
     ftabs = self.getProperty('use_folder_tabs')
-    ftabs += ('Newsletter', 'Publication')
-    self._delPropValue('use_folder_tabs')
+    if ftabs : 
+        ftabs += newftabs
+        self._delPropValue('use_folder_tabs')
+    else:
+        ftabs = newftabs
     self._setProperty('use_folder_tabs',ftabs,'lines')
  
     ## Adds specific portal_navigation and portal_forms

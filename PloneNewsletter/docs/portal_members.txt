@@ -1,0 +1,130 @@
+PloneNewsletter advances installation instructions
+------------------------------------------------------------
+$Id: portal_members.txt,v 1.1 2003/08/01 15:20:11 terraces Exp $
+------------------------------------------------------------
+This file is a component of PloneNewsletter product
+Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
+Maintained by Alexandre Passant <apa@makinacorpus.org>
+and Arnaud Bienvenu <abi@makinacorpus.org>
+Released under GPL version 2. or later 
+See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
+------------------------------------------------------------
+
+This file describes how to allow your portal members to subscribe 
+your newsletters using the 'My Preferences' form.
+
+- First, go throught the ZMI an add the following property to
+portal_memberdata:
+Name: newsletter
+Type: string
+(no default value)
+
+- Then, add the following code to personalize_form ZPT
+(in portal_skins/plone_forms)
+
+"""
+
+  <div class="row">
+                <div class="label">
+                    <span i18n:translate="label_display_names">S'abonner à la newsletter</span>
+
+                    <div id="visible_ids_help"
+                         i18n:translate="help_display_names" 
+                         class="help" 
+                         style="visibility:hidden">
+                    Select whether you want Names (also known as IDs) to be 
+                    visible and editable when editing contents. If you choose not
+                    to display Names, they will be generated automatically.
+                    </div>                
+                </div>
+                <div class="field"
+           	         tal:define="newsletter python:request.get('newsletter', member.newsletter);
+                                 tabindex tabindex/next;"> 
+                           
+                  <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value=""
+                           checked="checked"
+                           id="cb_nonewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="not: newsletter"
+                           />          
+                  <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value=""
+                           id="cb_nonewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="newsletter"
+                           />                    
+                    <label for="cb_visible_ids" i18n:translate="yes">Non</label>                    
+                    <br />
+                    
+                    <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value="1"
+                           checked="checked"
+                           id="cb_htmlnewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="python: newsletter=='1'"
+                           />              
+                    <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value="1"
+                           id="cb_htmlnewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="python: newsletter!='1'"
+                           />                                       
+                    <label for="cb_invisible_ids" i18n:translate="no">Oui, en version HTML</label>
+                    <br />
+
+                    <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value="0"
+                           checked="checked"
+                           id="cb_txtnewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="python: newsletter=='0'"
+                           />                                       
+                    <input type="radio" 
+                           class="noborder" 
+                           name="newsletter" 
+                           value="0"
+                           id="cb_txtnewsletter"
+                           tabindex=""
+                           onfocus="formtooltip('visible_ids_help',1)" 
+                           onblur="formtooltip('visible_ids_help',0)" 
+                           tal:attributes="tabindex tabindex;" 
+                           tal:condition="python: newsletter!='0'"
+                           />                                       
+                    <label for="cb_invisible_ids" i18n:translate="no">Oui, en version texte</label>
+
+
+                </div>
+            </div>
+
+"""
+
+that's it, your member can now subscribe to your newsletters (chosing HTML or txt format).
+However, you won't see them in the 'users' tab of your newsletters instances.
+
+

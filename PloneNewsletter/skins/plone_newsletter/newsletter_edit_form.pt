@@ -6,7 +6,16 @@
 
 <body>
 
-	<div metal:fill-slot="super1" 
+	<div metal:fill-slot="super1"
+   tal:define="dummy here/filterCookie;
+                 folderfilter python:request.get('folderfilter', '');
+                 global decodedFilter python:here.decodeFolderFilter(folderfilter);
+                 global filterValues decodedFilter;
+                 global filter decodedFilter;
+                 global portal_url here/portal_url;
+                 global member here/portal_membership/getAuthenticatedMember;
+                 standalone python:1;
+                 folder_contents python:here.getFolderContents(contentFilter=filter, suppressHiddenFiles=1);" 
 		tal:condition="python:len(here.portal_actions.listFilteredActionsFor(here)['folder']) > 1">
 	</div>
 

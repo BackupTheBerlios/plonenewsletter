@@ -1,6 +1,6 @@
 PloneNewsletter installation instructions
 ------------------------------------------------------------
-$Id: INSTALL,v 1.5 2002/12/20 16:16:27 abienvenu Exp $
+$Id: INSTALL,v 1.6 2003/08/01 15:20:11 terraces Exp $
 ------------------------------------------------------------
 This file is a component of PloneNewsletter product
 Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
@@ -42,6 +42,8 @@ See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
     newsletter-unsubscribe: "|  python /path_to_newsletter_product/NLparser.py http://path_to_site/newsletter_id"
 
 - If you wish admins to get a mail when newsletter is ready for reviewing, add users in Plone Site acl_users
+
+- If you wish to allow your portal members to subscribe your newsletters via their preferences page, read docs/portal_members.txt
 
 5/ Help, customisation, bugs ...
 - Check project homepage on http://developer.berlios.de/projects/plonenewsletter to get latest releases and informations

@@ -10,7 +10,7 @@ Advanced Newsletter system for Plone.
 The newsletter is created for a bunch of articles stored in a folder.
 Users can subscribe/unsubscribe to the mailing list, with confirmation e-mail.
 
-$Id: Newsletter.py,v 1.1 2002/11/05 11:26:40 terraces Exp $
+$Id: Newsletter.py,v 1.2 2003/08/01 15:20:11 terraces Exp $
 """
 
 ## ZOPE imports
@@ -54,27 +54,27 @@ factory_type_information = (
     'actions'       : (
         {'id'           : 'view',
          'name'         : 'View',
-         'action'       : 'folder_listing',
+         'action'       : 'folder_contents',
          'permissions'  : (CMFCorePermissions.View,),
-         'category'	    : 'folder',			
+         'category'	    : 'object',			
         },
         {'id'           : 'edit',
          'name'         : 'Edit',
          'action'       : 'portal_form/newsletter_edit_form',
          'permissions'  : (CMFCorePermissions.ModifyPortalContent,),
-         'category'     : 'folder',
+         'category'     : 'object',
         },
         {'id'           : 'users',
          'name'         : 'Users',
          'action'       : 'users_view',
          'permissions'  : (CMFCorePermissions.ModifyPortalContent,),
-         'category'     : 'folder',
+         'category'     : 'object',
         },
         {'id'           : 'localroles'
         , 'name'        : 'Local Roles'
 	    , 'action'      : 'folder_localrole_form'
 	    , 'permissions' : (CMFCorePermissions.ManageProperties,)
-	    , 'category'    : 'folder'
+	    , 'category'    : 'object'
         },
         ),
     }
@@ -109,6 +109,14 @@ class Newsletter(PortalFolder,
 
     security = ClassSecurityInfo()
     security.declareObjectPublic()
+
+    manage_options = PortalContent.manage_options
+    meta_type = factory_type_information['meta_type'] 
+
+    __implements__ = ( PortalContent.__implements__
+                     , DefaultDublinCoreImpl.__implements__
+                     )
+
 
     ## subscribe and ubsubscribe expressions
     SUB = 'Subscription'
@@ -229,30 +237,42 @@ class Newsletter(PortalFolder,
             return 1
 
     def deluser(self, id):
-	""" Delete a user by email """
+        """ Delete a user by email """
         if self.users.has_key(id):
             del self.users[id]
             self._p_changed = 1
 
     def adduser(self, REQUEST):
-	""" Add a user """
+        """ Add a user """
         user = User(REQUEST['firstName'], REQUEST['lastName'], REQUEST['email'], REQUEST['format'])
         self.users[REQUEST['email']] = user
         self._p_changed = 1
 
     def moduserformat(self, email, format):
-	""" Modify the format for a user """
-	if self.users.has_key(email) and format != self.users[email].format:
-	    self.users[email].format = format
-	    self._p_changed = 1
+        """ Modify the format for a user """
+        if self.users.has_key(email) and format != self.users[email].format:
+            self.users[email].format = format
+            self._p_changed = 1
 	
     def listusers(self):
-	""" List users """
-	result = []
-	for user in self.users.values():
-	    l = [user.name[0], user.name[1], user.email, user.format]
-	    result.append(l)
-	return result
+    	""" List users """
+    	result = []
+    	for user in self.users.values():
+    	    l = [user.name[0], user.name[1], user.email, user.format]
+    	    result.append(l)
+    	return result
+
+    def getallusers(self):
+        """ List self users plus portal users """
+        res = {}
+        users = self.users
+        for member in users.keys():
+           res[member] = users[member]
+        for member in self.portal_membership.listMembers():
+           if member.newsletter:
+                user = User(member.fullname, '', member.email, member.newsletter)
+                res[member.email] = user
+        return res                
 
 #############################
 ## E-mail posting function ##
@@ -260,7 +280,7 @@ class Newsletter(PortalFolder,
 
     def sendAll(self, publi, subject, message_txt, message_html):
         """ Send the newsletter to all subscribed members """
-        self.mailer.sendAll(publi, self.users, self.addTitle(subject), message_txt, message_html)
+        self.mailer.sendAll(publi, self.getallusers(), self.addTitle(subject), message_txt, message_html)
 
     def sendValidate(self, subject, publication_url):
         """ Send email to reviewers when publication submited """

@@ -8,7 +8,7 @@
 """
 A Publication is a Newsletter release. 
 
-$Id: Publication.py,v 1.3 2003/01/06 13:21:34 abienvenu Exp $
+$Id: Publication.py,v 1.4 2003/08/01 15:20:11 terraces Exp $
 """
 
 ## Python imports
@@ -57,45 +57,45 @@ Create a publication for the newsletter."""
                              , 'actions'        :
                                 ( { 'id'            : 'view'
                                   , 'name'          : 'View'
-                                  , 'action'        : 'folder_listing'
+                                  , 'action'        : 'folder_contents'
                                   , 'permissions'   : (View,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'webview'
                                   , 'name'          : 'Web view'
                                   , 'action'        : 'publi_webview'
                                   , 'permissions'   : (View,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'mailview'
                                   , 'name'          : 'Mail view'
                                   , 'action'        : 'publi_mailview'
                                   , 'permissions'   : (View,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'txtview'
                                   , 'name'          : 'Text view'
                                   , 'action'        : 'publi_txtview'
                                   , 'permissions'   : (View,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'edit'
                                   , 'name'          : 'Edit'
                                   , 'action'        : 'portal_form/folder_edit_form'
                                   , 'permissions'   : (ModifyPortalContent,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'customize'
                                   , 'name'          : 'Customize'
                                   , 'action'        : 'customize'
                                   , 'permissions'   : (ModifyPortalContent,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 , { 'id'            : 'status'
                                   , 'name'          : 'Status'
                                   , 'action'        : 'publi_status'
                                   , 'permissions'   : (View,)
-                                  , 'category'      : 'folder'
+                                  , 'category'      : 'object'
                                   }
                                 )
                              }
