@@ -1,6 +1,6 @@
 Changelog for PloneNewsletter product
 ------------------------------------------------------------
-$Id: CHANGELOG,v 1.1 2002/11/05 11:26:39 terraces Exp $
+$Id: CHANGELOG,v 1.2 2002/11/05 11:39:52 terraces Exp $
 ------------------------------------------------------------
 This file is a component of PloneNewsletter product
 Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
@@ -10,6 +10,7 @@ Released under GPL version 2. or later
 See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
 ------------------------------------------------------------
 
-2002/10/25: 0.1b1 [apa && abi]
+2002/11/05: 0.1b1 [apa && abi]
     - Initial release
     - Product used to be CMFNewsletter => updated to Plone
+    - CVS is now public on developer.berlios.de
