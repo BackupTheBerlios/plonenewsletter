@@ -1,6 +1,6 @@
 PloneNewsletter installation instructions
 ------------------------------------------------------------
-$Id: INSTALL,v 1.1 2002/11/05 11:26:41 terraces Exp $
+$Id: INSTALL,v 1.2 2002/11/05 11:38:56 terraces Exp $
 ------------------------------------------------------------
 This file is a component of PloneNewsletter product
 Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
@@ -45,9 +45,8 @@ See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
 
 5/ Help, customisation, bugs ...
 - Read README to learn how to custom newsletter template
-- Check project homepage on http://makina-corpus.org to get latest releases and informations
+- Check project homepage on http://developer.berlios.de/projects/plonenewsletter to get latest releases and informations
 - For any bugs, you can contact us at (apa@makinacorpus.org && abi@makinacorpus.org)
-
 
 Have Fun !
 
