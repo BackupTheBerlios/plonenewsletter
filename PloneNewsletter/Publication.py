@@ -8,7 +8,7 @@
 """
 A Publication is a Newsletter release. 
 
-$Id: Publication.py,v 1.2 2002/11/06 16:40:19 abienvenu Exp $
+$Id: Publication.py,v 1.3 2003/01/06 13:21:34 abienvenu Exp $
 """
 
 ## Python imports
@@ -152,6 +152,8 @@ class Publication(PortalFolder, PortalContent, DefaultDublinCoreImpl,):
         text = parser.result
         lines = []
         words = string.split(text)
+	if not words:
+	    return text
         current = words.pop(0)
         if current == '@#BR@':
             current = ''
