@@ -21,7 +21,7 @@
           tal:content="item/Title"
           tal:attributes="href string:#${repeat/item/number}"
           >Article title</a>
-		<div tal:content="item/description" tal:condition="python:item.description!=''">Description</div>
+		<div tal:content="structure item/description" tal:condition="python:item.description!=''">Description</div>
  </div>
  </div>
  <br />
