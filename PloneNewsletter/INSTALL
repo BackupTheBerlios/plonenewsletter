@@ -1,6 +1,6 @@
 PloneNewsletter installation instructions
 ------------------------------------------------------------
-$Id: INSTALL,v 1.4 2002/11/05 18:05:58 abienvenu Exp $
+$Id: INSTALL,v 1.5 2002/12/20 16:16:27 abienvenu Exp $
 ------------------------------------------------------------
 This file is a component of PloneNewsletter product
 Copyright (C) 2002, Makina Corpus, http://makinacorpus.org
@@ -14,7 +14,7 @@ See LICENSE.txt file or http://www.gnu.org/copyleft/gpl.html
 
 - Zope: http://www.zope.org/Products (tested with 2.5.1 and 2.6.0)
 - CMF: http://cmf.zope.org/download (tested with 1.3)
-- Plone: http://plone.org/download (texted with 1.0beta2)
+- Plone: http://plone.org/download (tested with 1.0beta2)
 
 2/ Installation
 
