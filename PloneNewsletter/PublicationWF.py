@@ -14,7 +14,7 @@
 """
 Programmatically creates a workflow type
 """
-__version__ = "$Revision: 1.1 $"[11:-2]
+__version__ = "$Revision: 1.2 $"[11:-2]
 
 from Products.CMFCore.WorkflowTool import addWorkflowFactory
 
@@ -44,7 +44,7 @@ def setupPubli_wf(wf):
     sdef.setProperties(title="""Public""",
                        transitions=[])
     sdef.setPermission('Access contents information', 1, ['Anonymous', 'Manager'])
-    sdef.setPermission('Modify portal content', 0, ['M', 'a', 'n', 'a', 'g', 'e', 'r'])
+    sdef.setPermission('Modify portal content', 1, ['Manager'])
     sdef.setPermission('View', 1, ['Anonymous', 'Manager'])
 
     sdef = wf.states['pending']
