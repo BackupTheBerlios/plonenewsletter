@@ -8,7 +8,7 @@
 """
 A Publication is a Newsletter release. 
 
-$Id: Publication.py,v 1.5 2003/10/13 15:23:50 abienvenu Exp $
+$Id: Publication.py,v 1.6 2003/10/13 15:31:33 abienvenu Exp $
 """
 
 ## Python imports
@@ -223,6 +223,8 @@ class Publication(PortalFolder, PortalContent, DefaultDublinCoreImpl,):
         htmlbody = self.publi_mailview()
         txtbody = self.publi_txtindex()
         txtbody = string.replace(txtbody[5:-7], '&quot;', '"')
+        txtbody = string.replace(txtbody, '&raquo;', '"')
+        txtbody = string.replace(txtbody, '&laquo;', '"')
         txtbody = string.replace(txtbody, '&nbsp;', ' ')
         txtbody = string.replace(txtbody, '&amp;', '&')
         txtbody = string.replace(txtbody, '&agrave;', 'à')
