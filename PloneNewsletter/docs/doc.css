@@ -1,0 +1,19 @@
+BODY,TD,TH,CAPTION {font-family:Arial,Helvetica,sans-serif;}
+BODY,TD	{font-size: 10px; }
+H1	{font-size: 18px; text-align: center; }
+H2	{font-size: 16px; }
+H3	{font-size: 14px; }
+H4,TH	{font-size: 12px; }
+CODE	{ background-color: #D0FFD0; }
+SAMP	{ background-color: #FFD0D0; }
+UL	{ list-style-type: square; }
+
+H2:before { content: counter(h2) ". "; counter-increment: h2; counter-reset: h3; }
+H3:before { content: counter(h3) ". "; counter-increment: h3; counter-reset: h4; }
+H4:before { content: counter(h4) ". "; counter-increment: h4; counter-reset: h5; }
+
+DIV.block { border-width: 1px;
+            border-color: #0000A0;
+	    border-style: solid;
+	    margin: 1em;
+	    padding: 1em; }

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Plone Newsletter Documentation</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <link rel="stylesheet" type="text/css" href="doc.css"></head>
+
+ <body>
+<h1>Plone Newsletter User Guide</h1>
+<h2>Introduction</h2>
+PloneNewsletter helps you to edit, send and publish newsletters. It is based
+on Plone and CMF, so your HTML articles are managed into a powerful content
+management system. PloneNewsletter adds the ability to manage subscribers,
+it features an email sending mecanism and an automated subscription manager
+(like most mailing-list managers). Moreover, it helps you create the html
+summary and the text version of your newsletter for both mail and web versions.<br>
+<br>
+Note : this is the user guide only. For installation, see the INSTALL text file included with the source code.<br>
+<h2>Structure<br>
+</h2>
+
+Each newsletter is built with three different objects : one Newsletter, which
+contains Publications, which contain Articles.<br>
+<img src="architecture.png" alt="Architecture overview" width="400" height="199"><br>
+<br>
+Note that you can put your Publications into a structure of directories if you wish.<br>
+<h3>The Newsletter Object</h3>
+The newsletter object has properties including the "From" email, message
+signature, etc... You can modify them clicking on the "edit" tab. There you
+can also define the "Topics", which are categories in which articles may
+be grouped together.<br>
+<br>
+Moreover, it has a "users" tab when you can view, add or delete subscribers.
+This is an admin access, there are not any message sent to the user that
+has been added or deleted.<br>
+<h3>The Publication Object</h3>
+A Publication object is a sort of folder which contains your articles. Is has three views :<br>
+<ul>
+  <li>the "web view" tab gives you a preview of what will be on the web (including subscription form)</li>
+  <li>the "mail view" tab is a preview of the html version that will be emailed</li>
+  <li>the "text view" tab is a preview of the text version that will be emailed<br>
+  </li>
+</ul>
+It also has a "customize" tab which generates index.html and index.txt. You can then customize theses generated indexes.<br>
+<br>
+You will send the newsletter clicking on the "publishing" tab, and choosing
+the "send" action. The "status" tab will tell you the status of the sending
+process.<br>
+<h3>The Article Object</h3>
+An Article is basically a Plone Document, preferably written in HTML. It
+features a "Topic" property which allow you to group related articles together.
+Available topics are defined in the Newsletter Object.<br>
+<h2>Skins and templates</h2>
+It only requires standard Plone/CMF customization competences to modify the
+skins and templates of PloneNewsletter. You will find the templates in portal_skins/plone_newsletter.
+Here is a simple drawing to help you figure out how the templates work together
+:<br>
+<img src="templates.png" alt="Templates organization" width="286" height="300"><br>
+You can set a skin that is totally different for public web access and for
+administrators or editors. The method for dynamic skinning is described on
+<a href="http://www.zopelabs.com/cookbook/1028172355">http://www.zopelabs.com/cookbook/1028172355</a>.
+Please note that this "Cookbook" code really depends on the version of CMF
+you are using. If you have problems, use the code and/or share your experience.<br>
+<br>
+<div style="text-align: right;">(c) 2002 Makina Corpus<br>
+</div>
+</body></html>
