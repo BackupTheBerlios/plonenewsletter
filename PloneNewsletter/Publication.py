@@ -8,7 +8,7 @@
 """
 A Publication is a Newsletter release. 
 
-$Id: Publication.py,v 1.1 2002/11/05 11:26:41 terraces Exp $
+$Id: Publication.py,v 1.2 2002/11/06 16:40:19 abienvenu Exp $
 """
 
 ## Python imports
@@ -202,14 +202,12 @@ class Publication(PortalFolder, PortalContent, DefaultDublinCoreImpl,):
     def send(self, context, all=1):
         """ Call the send method of the Newsletter,
             passing it text and html bodies """
-        self.genIndexes(context.REQUEST, context.REQUEST.RESPONSE)
         [htmlbody, txtbody] = self.getBodies()
         self.sendAll(self, self.title_or_id(), txtbody, htmlbody)
 
     security.declarePublic('validate')
     def validate(self, context, all=1):
         """ Send e-mail to admin, telling them the newsletter should be validated """
-        self.genIndexes(context.REQUEST, context.REQUEST.RESPONSE)
         [htmlbody, txtbody] = self.getBodies()
         self.sendValidate('[Publication submited for review] %s' %self.title_or_id(), self.absolute_url())
 
